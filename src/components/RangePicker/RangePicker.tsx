@@ -14,7 +14,7 @@ const RangePicker = () => {
 
 
     return (
-        <section>
+        <section className="flex justify-center items-center flex-col">
             <button className="py-4 px-6 rounded-xl bg-palette-purpleLight text-lg font-black " onClick={handleButtonClick}>
                 {areDatesSet ?
                     "You have selected from " + <span className="date-text">{startingDate?.toDateString()}</span> + " to " + <span className="date-text">{endingDate?.toDateString()}</span>
