@@ -1,8 +1,9 @@
-
+import { useDateRange } from "./context/DateRangeContext"
 
 const App = () => {
+
   return (
-    <div className=" border-2 bg-yellow-100">
+    <div className="min-h-screen p-4 bg-purplePalette-background flex flex-col items-center justify-between">
       App
     </div>
   )
