@@ -11,7 +11,7 @@ const MoreOptions = ({ isCalendarVisible, setisCalendarVisible }: moreOptionProp
     }
 
     return (
-        <div className='w-full flex flex-row   justify-around md:justify-between items-center bg-black rounded-xl md:px-2'>
+        <div className='w-full flex flex-row   justify-evenly md:justify-between items-center bg-black rounded-xl px-2'>
             <div className="more-options-container ">
                 <button className='more-options-button '>Last 7 days</button>
                 <button className='more-options-button  '>Last 30 days</button>

@@ -1,15 +1,16 @@
-import CalendarCard from "./CalendarCard";
+import { useDateRangeContext } from "../../../context/DateRangeContext";
+import CalendarHeader from "./CalendarHeader";
+
 const Calendar = () => {
 
-    const currentDate = new Date();
-    const nextMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
+    const { initialCal1Date, initialCal2Date } = useDateRangeContext();
 
 
 
     return (
         <div className=" flex flex-col md:flex-row gap-2">
-            <CalendarCard currDate={currentDate} />
-            <CalendarCard currDate={nextMonthDate} />
+            <CalendarHeader currDate={initialCal1Date!} />
+            <CalendarHeader currDate={initialCal2Date!} />
         </div>
     )
 }

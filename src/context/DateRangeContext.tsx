@@ -5,9 +5,13 @@ interface DateRangeContextProps {
     endingDate: Date | null;
     weekendDates: Date[];
     areDatesSet: boolean;
+    initialCal1Date: Date | null;
+    initialCal2Date: Date | null;
     setStartingDate: (date: Date | null) => void;
     setEndingDate: (date: Date | null) => void;
     setWeekendDates: (dates: Date[]) => void;
+    setinitialCal1Date: React.Dispatch<React.SetStateAction<Date>>;
+    setinitialCal2Date: React.Dispatch<React.SetStateAction<Date>>;
 }
 
 export const DateRangeContext = React.createContext<DateRangeContextProps | undefined>(undefined);
@@ -22,6 +26,34 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
 
     const [areDatesSet, setareDatesSet] = useState<boolean>(false);
 
+    const [initialCal1Date, setinitialCal1Date] = useState<Date>(new Date());
+
+    const [initialCal2Date, setinitialCal2Date] = useState<Date>(new Date());
+
+
+
+
+    useEffect(() => {
+        const nextMonthDate = new Date(initialCal1Date.getFullYear(), initialCal1Date.getMonth() + 1, initialCal1Date.getDate());
+        setinitialCal2Date(nextMonthDate);
+    }, [])
+
+    // useEffect(() => {
+    //     if (initialCal1Date === initialCal2Date) return;
+    //     if (initialCal1Date > initialCal2Date) {
+    //         setinitialCal2Date(new Date(initialCal1Date.getFullYear(), initialCal1Date.getMonth() + 1, initialCal1Date.getDate()))
+    //     } else if (initialCal1Date < initialCal2Date) {
+    //         setinitialCal1Date(new Date(initialCal2Date.getFullYear(), initialCal2Date.getMonth() - 1, initialCal2Date.getDate()))
+    //     }
+    //     console.log("Initial date1: ", initialCal1Date)
+    //     console.log("Initial date2: ", initialCal2Date)
+
+
+    // }, [initialCal1Date])
+
+
+
+
 
     // seeing if dates are set to decide what text to display. 
     useEffect(() => {
@@ -29,10 +61,14 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
             setareDatesSet(true);
         }
 
-    }, [startingDate, endingDate])
+
+
+
+
+    }, [startingDate, endingDate, initialCal1Date])
 
     return (
-        <DateRangeContext.Provider value={{ startingDate, endingDate, weekendDates, setStartingDate, setEndingDate, setWeekendDates, areDatesSet }}>
+        <DateRangeContext.Provider value={{ startingDate, endingDate, weekendDates, setStartingDate, setEndingDate, setWeekendDates, areDatesSet, initialCal1Date, initialCal2Date, setinitialCal1Date, setinitialCal2Date }}>
             {children}
         </DateRangeContext.Provider>
     )
