@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getDaysOfTheWeek, generateDatesOfTheMonth } from "../../../utils/dateFunctions";
+import { getDaysOfTheWeek, generateDatesOfTheMonth, isAWeekday } from "../../../utils/dateFunctions";
 import { useDateRangeContext } from "../../../context/DateRangeContext";
 interface CalendarGridProps {
     currDate: Date | undefined;
@@ -17,7 +17,7 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
     }, [currDate])
 
     // here starts the import for setting the start and end dates. 
-    const { startingDate, setStartingDate, endingDate, setEndingDate } = useDateRangeContext();
+    const { startingDate, setStartingDate, endingDate, setEndingDate, hoverDate, setHoverDate } = useDateRangeContext();
 
     const handleDateClick = (date: Date) => {
         if (!startingDate || (startingDate && endingDate)) {
@@ -32,9 +32,23 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
         }
     }
 
-    const handleClick = () => {
-        console.log()
-    }
+    const handleMouseEnter = (date: Date | null) => {
+        if (startingDate && !endingDate) {
+            setHoverDate(date);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setHoverDate(null);
+    };
+
+    const isDateInGivenRange = (date: Date) => {
+        if (!startingDate || !hoverDate) return false;
+        if (!endingDate) {
+            return date > startingDate && date <= hoverDate;
+        }
+        return date > startingDate && date < endingDate;
+    };
 
 
 
@@ -60,7 +74,10 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                                 // here, we are making sure that null values are not clickable and settable as a date. Limiting this on UI so we dont have to do it using Scripts. 
                                 if (currDay !== null)
                                     return (
-                                        <button onClick={() => handleDateClick(currDay)} key={_idx} className="w-full flex justify-around p-1 ">
+                                        <button onClick={() => handleDateClick(currDay)}
+                                            onMouseEnter={() => handleMouseEnter(currDay)}
+                                            onMouseLeave={handleMouseLeave}
+                                            key={_idx} className={`w-full p-1 rounded-full  ${startingDate === currDay || endingDate === currDay ? 'bg-palette-purpleDark text-black font-black ' : isDateInGivenRange(currDay) ? 'bg-palette-purpleLight text-slate-800' : !isAWeekday(currDay) ? ' bg-slate-800 text-slate-500' : ''} `}>
                                             {currDay?.getDate()}
                                         </button>
                                     )
