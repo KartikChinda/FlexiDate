@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { getMonthName, getDaysOfTheWeek, generateDatesOfTheMonth } from "../../../utils/dateFunctions";
+import React, { useState } from "react";
+import { getMonthName } from "../../../utils/dateFunctions";
 import CalendarCard from "./CalendarCard";
 
+
 interface CalendarCardProps {
-    currDate: Date | undefined;
-    // setcurrDate: React.Dispatch<React.SetStateAction<Date>>;
+    currentDate: Date | undefined;
+    setcurrentDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const CalendarHeader = ({ currDate }: CalendarCardProps) => {
-    const [currentDate, setcurrentDate] = useState(currDate);
+const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
+
+
+    // const [currentDate, setcurrentDate] = useState(currDate);
     const currentMonth = getMonthName(currentDate?.getMonth());
 
     let currentYear = currentDate?.getFullYear();
@@ -56,6 +59,7 @@ const CalendarHeader = ({ currDate }: CalendarCardProps) => {
         setcurrentDate(newDate);
     }
     return (
+
         <div className='w-[300px] h-[320px]  rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings  bg-black'>
             {/* this is the header of the card */}
             <div className="w-full flex justify-between items-center text-xl">
@@ -69,6 +73,7 @@ const CalendarHeader = ({ currDate }: CalendarCardProps) => {
                 <CalendarCard currDate={currentDate} />
             </div>
         </div>
+
     )
 }
 

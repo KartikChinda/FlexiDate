@@ -38,21 +38,6 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
         setinitialCal2Date(nextMonthDate);
     }, [])
 
-    // useEffect(() => {
-    //     if (initialCal1Date === initialCal2Date) return;
-    //     if (initialCal1Date > initialCal2Date) {
-    //         setinitialCal2Date(new Date(initialCal1Date.getFullYear(), initialCal1Date.getMonth() + 1, initialCal1Date.getDate()))
-    //     } else if (initialCal1Date < initialCal2Date) {
-    //         setinitialCal1Date(new Date(initialCal2Date.getFullYear(), initialCal2Date.getMonth() - 1, initialCal2Date.getDate()))
-    //     }
-    //     console.log("Initial date1: ", initialCal1Date)
-    //     console.log("Initial date2: ", initialCal2Date)
-
-
-    // }, [initialCal1Date])
-
-
-
 
 
     // seeing if dates are set to decide what text to display. 
