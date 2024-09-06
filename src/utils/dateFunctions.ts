@@ -17,3 +17,46 @@ export const getWeekendsInSelectedRange = (startingDate: Date, endingDate: Date)
     return resultWeekends;
 }
 
+export const generateDatesOfTheMonth = (date: Date) => {
+    const calendarMatrix: (Date | null)[][] = [[]];
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDate = new Date(year, month, 1);
+    const endDate = new Date(year, month + 1, 0);
+
+    let currentWeek = 0;
+
+    // filling null till the day the month starts 
+    for (let i = 0; i < firstDate.getDay(); i++) {
+        calendarMatrix[currentWeek].push(null);
+    }
+
+    // filling the rest of the calendar. 
+    for (let i = 1; i <= endDate.getDate(); i++) {
+        if (calendarMatrix[currentWeek].length === 7) {
+            currentWeek++;
+            calendarMatrix[currentWeek] = []
+        }
+        calendarMatrix[currentWeek].push(new Date(year, month, i));
+    }
+
+    // filling from the end of the month to the end of the current week. 
+    while (calendarMatrix[currentWeek].length < 7) {
+        calendarMatrix[currentWeek].push(null);
+    }
+
+    return calendarMatrix;
+}
+
+export const getMonthName = (monthNumber: number | undefined): String => {
+    if (typeof monthNumber === undefined) return "Invalid Month";
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    if (monthNumber! <= 11) {
+        return months[monthNumber!];
+    }
+    return "Invalid month."
+}
+
+export const getDaysOfTheWeek = () => {
+    return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+}

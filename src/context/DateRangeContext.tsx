@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 interface DateRangeContextProps {
     startingDate: Date | null;
     endingDate: Date | null;
     weekendDates: Date[];
+    areDatesSet: boolean;
     setStartingDate: (date: Date | null) => void;
     setEndingDate: (date: Date | null) => void;
     setWeekendDates: (dates: Date[]) => void;
@@ -19,8 +20,19 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
     const [endingDate, setEndingDate] = useState<Date | null>(null);
     const [weekendDates, setWeekendDates] = useState<Date[]>([]);
 
+    const [areDatesSet, setareDatesSet] = useState<boolean>(false);
+
+
+    // seeing if dates are set to decide what text to display. 
+    useEffect(() => {
+        if (startingDate && endingDate) {
+            setareDatesSet(true);
+        }
+
+    }, [startingDate, endingDate])
+
     return (
-        <DateRangeContext.Provider value={{ startingDate, endingDate, weekendDates, setStartingDate, setEndingDate, setWeekendDates }}>
+        <DateRangeContext.Provider value={{ startingDate, endingDate, weekendDates, setStartingDate, setEndingDate, setWeekendDates, areDatesSet }}>
             {children}
         </DateRangeContext.Provider>
     )

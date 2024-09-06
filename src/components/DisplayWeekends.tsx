@@ -3,21 +3,12 @@ import { useDateRangeContext } from "../context/DateRangeContext"
 
 const DisplayWeekends = () => {
 
-    const { startingDate, endingDate, weekendDates } = useDateRangeContext();
-    const [areDatesSet, setareDatesSet] = useState<boolean>(false);
+    const { areDatesSet, startingDate, endingDate, weekendDates } = useDateRangeContext();
 
-
-    // seeing if dates are set to decide what text to display. 
-    useEffect(() => {
-        if (startingDate && endingDate) {
-            setareDatesSet(true);
-        }
-
-    }, [startingDate, endingDate])
 
     console.log(weekendDates);
     return (
-        <div className="w-[85%] rounded-xl  bg-purplePalette-purpleLight flex flex-col gap-4 justify-center items-left p-4">
+        <div className="w-[85%] rounded-xl  bg-palette-purpleLight flex flex-col gap-4 justify-center items-left p-4">
             <div className="display-weekends-text">
                 {areDatesSet ? "" : "Please select a range of dates."}
             </div>

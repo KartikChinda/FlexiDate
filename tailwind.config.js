@@ -16,7 +16,7 @@ export default {
           componentBackground: "#000000",
           componentForeground: "#FFDB00",
         },
-        purplePalette: {
+        palette: {
           background: "#F7F7F7",
           purpleLight: "#D6C6F7",
           purpleDark: "#DDB4FF",

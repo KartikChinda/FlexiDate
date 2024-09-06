@@ -6,11 +6,16 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: "text";
+  body {
+    font-family: 'Lora';
   }
 }
 
 .display-weekends-text {
   @apply p-2 text-black font-bold text-lg md:text-4xl font-text
+}
+
+
+.date-text {
+  @apply font-bold
 }
