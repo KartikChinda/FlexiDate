@@ -10,3 +10,7 @@
     font-family: "text";
   }
 }
+
+.display-weekends-text {
+  @apply p-2 text-black font-bold text-lg md:text-4xl font-text
+}

@@ -7,8 +7,6 @@ interface DateRangeContextProps {
     setStartingDate: (date: Date | null) => void;
     setEndingDate: (date: Date | null) => void;
     setWeekendDates: (dates: Date[]) => void;
-
-    // value: String;
 }
 
 export const DateRangeContext = React.createContext<DateRangeContextProps | undefined>(undefined);
@@ -29,6 +27,7 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
 };
 
 export const useDateRangeContext = () => {
+    // created the import for useContext right here so it doesnt have to be done for each component. 
     const context = useContext(DateRangeContext);
     if (!context) {
         {
