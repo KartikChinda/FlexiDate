@@ -1,13 +1,18 @@
+import { useDateRangeContext } from "../../context/DateRangeContext";
 
 interface moreOptionProps {
-    isCalendarVisible: boolean;
     setisCalendarVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const MoreOptions = ({ isCalendarVisible, setisCalendarVisible }: moreOptionProps) => {
+const MoreOptions = ({ setisCalendarVisible }: moreOptionProps) => {
+
+    const { setStartingDate, setEndingDate, setareDatesSet } = useDateRangeContext();
 
     const handleCancelClick = () => {
         setisCalendarVisible(false);
+        setStartingDate(null);
+        setEndingDate(null);
+        setareDatesSet(false);
     }
 
     return (

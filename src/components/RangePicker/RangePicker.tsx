@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDateRangeContext } from "../../context/DateRangeContext";
-import Calendar from "./Calendar/CalendarGrid";
+
 import MoreOptions from "./MoreOptions";
+import CalendarCard from "./Calendar/CalendarCard";
+import { properDateFormat } from "../../utils/dateFunctions";
 
 
 const RangePicker = () => {
@@ -14,20 +16,26 @@ const RangePicker = () => {
     }
 
 
+
+
     return (
         <section className="flex justify-center items-center flex-col">
             <button className="py-4 px-6 rounded-xl bg-palette-purpleLight text-lg font-black " onClick={handleButtonClick}>
                 {areDatesSet ?
-                    "You have selected from " + <span className="date-text">{startingDate?.toDateString()}</span> + " to " + <span className="date-text">{endingDate?.toDateString()}</span>
+                    <div>
+                        You have selected from <span className="date-text">{properDateFormat(startingDate!)}</span> to <span className="date-text">{properDateFormat(endingDate!)}</span>
+                    </div>
+
                     :
-                    "Click here to select a range of dates."
+                    isCalendarVisible ? "Select a start and end date." :
+                        "Click here to select a range of dates."
                 }
             </button>
             <div className="mt-2">
-                {isCalendarVisible ? <Calendar /> : ""}
+                {isCalendarVisible ? <CalendarCard /> : ""}
             </div>
             {isCalendarVisible && <div className="w-full mt-3">
-                <MoreOptions isCalendarVisible={isCalendarVisible} setisCalendarVisible={setisCalendarVisible} />
+                <MoreOptions setisCalendarVisible={setisCalendarVisible} />
             </div>}
         </section>
 

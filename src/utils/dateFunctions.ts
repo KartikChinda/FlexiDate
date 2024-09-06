@@ -60,3 +60,13 @@ export const getMonthName = (monthNumber: number | undefined): String => {
 export const getDaysOfTheWeek = () => {
     return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 }
+
+export const properDateFormat = (date: Date): String => {
+    if (!(date instanceof Date)) return "";
+    const currYear = date.getFullYear();
+    const currMonth = String(date.getMonth() + 1).padStart(2, '0') //so this is basically making 6 to 06. 
+    const currDate = String(date.getDate()).padStart(2, '0');
+
+    const finalFormat = `${currYear}-${currMonth}-${currDate}`;
+    return finalFormat;
+}

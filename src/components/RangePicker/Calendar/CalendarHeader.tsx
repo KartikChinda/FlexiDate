@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { getMonthName } from "../../../utils/dateFunctions";
-import CalendarCard from "./CalendarCard";
+import CalendarGrid from "./CalendarGrid";
 
 
 interface CalendarCardProps {
@@ -70,7 +70,7 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
                 <button onClick={handleNextYear}>&gt;&gt;</button>
             </div>
             <div>
-                <CalendarCard currDate={currentDate} />
+                <CalendarGrid currDate={currentDate} />
             </div>
         </div>
 

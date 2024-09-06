@@ -1,65 +1,33 @@
-import { useEffect, useState } from "react";
-import { getMonthName, getDaysOfTheWeek, generateDatesOfTheMonth } from "../../../utils/dateFunctions";
-interface CalendarCardProps {
-    currDate: Date | undefined;
-    // setcurrDate: React.Dispatch<React.SetStateAction<Date>>;
-}
+import { useEffect } from "react";
+import { useDateRangeContext } from "../../../context/DateRangeContext";
+import CalendarHeader from "./CalendarHeader";
 
-const CalendarCard = ({ currDate }: CalendarCardProps) => {
+const CalendarCard = () => {
 
-
-    const daysOfTheWeek = getDaysOfTheWeek();
-    const [calendarMatrix, setCalendarMatrix] = useState<(Date | null)[][]>([[]]);
-
+    const { initialCal1Date, initialCal2Date, setinitialCal1Date, setinitialCal2Date } = useDateRangeContext();
 
     useEffect(() => {
-        setCalendarMatrix(generateDatesOfTheMonth(currDate!));
-    }, [currDate])
+        if (initialCal1Date === null) return;
+        if (initialCal2Date === null) return;
 
-    const handleClick = () => {
-        console.log()
-    }
+        if (initialCal1Date >= initialCal2Date) {
+
+            const newTempDate = new Date(initialCal1Date.getFullYear(), initialCal1Date.getMonth() + 1, 1);
+            setinitialCal2Date(newTempDate);
+        }
+        else if (initialCal2Date < initialCal1Date) {
+            const newTempDate = new Date(initialCal2Date.getFullYear(), initialCal2Date.getMonth() - 1, 1);
+            setinitialCal1Date(newTempDate);
+        }
+    }, [initialCal1Date, initialCal2Date])
 
 
 
     return (
-        <div className='w-[300px] bg-black rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings'>
-
-
-
-            {/* here goes the days of the week */}
-            <div className="w-full mt-4 flex justify-between">
-                {daysOfTheWeek.map((day) => {
-                    return (
-                        <p key={day}>{day}</p>
-                    )
-                })}
-            </div>
-            {/* let's make the main matrix */}
-            <div className="w-full mt-2">
-                {calendarMatrix.map((currWeek, _idx) => {
-                    return (
-                        <div key={_idx} className="w-full flex justify-center items-center gap-4 ">
-                            {currWeek.map((currDay, _idx) => {
-                                // here, we are making sure that null values are not clickable and settable as a date. Limiting this on UI so we dont have to do it using Scripts. 
-                                if (currDay !== null)
-                                    return (
-                                        <button onClick={handleClick} key={_idx} className="w-full flex justify-around p-1 ">
-                                            {currDay?.getDate()}
-                                        </button>
-                                    )
-                                return (
-                                    <div key={_idx} className="w-full flex justify-around p-1 ">
-
-                                    </div>
-                                )
-
-
-                            })}
-                        </div>
-                    )
-                })}
-            </div>
+        <div className=" flex flex-col md:flex-row gap-2">
+            {/* you will have to send both dates to one header only. */}
+            <CalendarHeader currentDate={initialCal1Date!} setcurrentDate={setinitialCal1Date} />
+            <CalendarHeader currentDate={initialCal2Date!} setcurrentDate={setinitialCal2Date} />
         </div>
     )
 }

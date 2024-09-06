@@ -12,6 +12,7 @@ interface DateRangeContextProps {
     setWeekendDates: (dates: Date[]) => void;
     setinitialCal1Date: React.Dispatch<React.SetStateAction<Date>>;
     setinitialCal2Date: React.Dispatch<React.SetStateAction<Date>>;
+    setareDatesSet: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const DateRangeContext = React.createContext<DateRangeContextProps | undefined>(undefined);
@@ -53,7 +54,7 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
     }, [startingDate, endingDate, initialCal1Date])
 
     return (
-        <DateRangeContext.Provider value={{ startingDate, endingDate, weekendDates, setStartingDate, setEndingDate, setWeekendDates, areDatesSet, initialCal1Date, initialCal2Date, setinitialCal1Date, setinitialCal2Date }}>
+        <DateRangeContext.Provider value={{ startingDate, endingDate, weekendDates, setStartingDate, setEndingDate, setWeekendDates, areDatesSet, setareDatesSet, initialCal1Date, initialCal2Date, setinitialCal1Date, setinitialCal2Date }}>
             {children}
         </DateRangeContext.Provider>
     )
