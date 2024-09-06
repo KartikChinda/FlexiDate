@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDateRangeContext } from "../../context/DateRangeContext";
 import Calendar from "./Calendar/CalendarGrid";
+import MoreOptions from "./MoreOptions";
 
 
 const RangePicker = () => {
@@ -25,6 +26,9 @@ const RangePicker = () => {
             <div className="mt-2">
                 {isCalendarVisible ? <Calendar /> : ""}
             </div>
+            {isCalendarVisible && <div className="w-full mt-3">
+                <MoreOptions isCalendarVisible={isCalendarVisible} setisCalendarVisible={setisCalendarVisible} />
+            </div>}
         </section>
 
 

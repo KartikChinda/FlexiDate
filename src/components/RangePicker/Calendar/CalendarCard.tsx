@@ -53,7 +53,7 @@ const CalendarCard = ({ currDate }: CalendarCardProps) => {
 
 
     return (
-        <div className='w-[300px] bg-black rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings'>
+        <div className='w-[300px] h-[300px] bg-black rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings'>
             {/* this is the header of the card */}
             <div className="w-full flex justify-between items-center  text-xl">
                 <button onClick={handlePrevMonth}>&lt;</button>

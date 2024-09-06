@@ -19,3 +19,7 @@
 .date-text {
   @apply font-bold
 }
+
+.more-options-button {
+  @apply p-2 font-semibold rounded-xl bg-palette-purpleDark border-black hover:text-palette-purpleDark hover:bg-black hover:border-palette-purpleDark border-2 duration-150
+}
