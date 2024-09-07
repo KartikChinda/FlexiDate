@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDateRangeContext } from "../../../context/DateRangeContext";
 import CalendarHeader from "./CalendarHeader";
 
@@ -18,7 +18,6 @@ const CalendarCard = () => {
         else if (initialCal2Date < initialCal1Date) {
             const newTempDate = new Date(initialCal2Date.getFullYear(), initialCal2Date.getMonth() - 1, 1);
             setinitialCal1Date(newTempDate);
-
         }
         console.log("D1: ", initialCal1Date)
         console.log("D2: ", initialCal2Date)

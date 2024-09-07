@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDateRangeContext } from "../../context/DateRangeContext";
 
 import MoreOptions from "./MoreOptions";
@@ -8,7 +8,7 @@ import { properDateFormat } from "../../utils/dateFunctions";
 
 const RangePicker = () => {
 
-    const { startingDate, endingDate, areDatesSet, setareDatesSet } = useDateRangeContext();
+    const { startingDate, endingDate, areDatesSet } = useDateRangeContext();
     const [isCalendarVisible, setisCalendarVisible] = useState<boolean>(false);
 
     const handleButtonClick = () => {
