@@ -7,7 +7,7 @@ interface moreOptionProps {
 
 const MoreOptions = ({ setisCalendarVisible }: moreOptionProps) => {
 
-    const { setStartingDate, setEndingDate, setareDatesSet } = useDateRangeContext();
+    const { setStartingDate, setEndingDate, setareDatesSet, setinitialCal1Date } = useDateRangeContext();
 
     const handleCancelClick = () => {
         setisCalendarVisible(false);
@@ -33,7 +33,7 @@ const MoreOptions = ({ setisCalendarVisible }: moreOptionProps) => {
             sevenDaysBefore.setDate(sevenDaysBefore.getDate() - 1);
         }
         setStartingDate(new Date(sevenDaysBefore));
-
+        setinitialCal1Date(sevenDaysBefore);
         return;
     }
 
@@ -50,6 +50,7 @@ const MoreOptions = ({ setisCalendarVisible }: moreOptionProps) => {
             thirtyDaysBefore.setDate(thirtyDaysBefore.getDate() - 1);
         }
         setStartingDate(new Date(thirtyDaysBefore));
+        setinitialCal1Date(thirtyDaysBefore);
 
         return;
     }
