@@ -23,7 +23,7 @@ const RangePicker = () => {
             <button className="py-4 px-6 rounded-xl bg-palette-colLight text-lg font-black " onClick={handleButtonClick}>
                 {areDatesSet ?
                     <div>
-                        You have selected dates from <span className="date-text">{properDateFormat(startingDate!)}</span> to <span className="date-text">{properDateFormat(endingDate!)}</span>
+                        You have selected dates from <span className="date-text">{properDateFormat(startingDate)}</span> to <span className="date-text">{properDateFormat(endingDate)}</span>
                     </div>
 
                     :

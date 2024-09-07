@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getDaysOfTheWeek, generateDatesOfTheMonth, isAWeekday } from "../../../utils/dateFunctions";
 import { useDateRangeContext } from "../../../context/DateRangeContext";
 interface CalendarGridProps {
-    currDate: Date | undefined;
+    currDate: Date;
 }
 
 const CalendarGrid = ({ currDate }: CalendarGridProps) => {
@@ -40,7 +40,7 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
     }, [startingDate, endingDate]);
 
     useEffect(() => {
-        setCalendarMatrix(generateDatesOfTheMonth(currDate!));
+        setCalendarMatrix(generateDatesOfTheMonth(currDate));
         setdatesInRange(generateHighlightedDates);
     }, [currDate, datesInRange])
 

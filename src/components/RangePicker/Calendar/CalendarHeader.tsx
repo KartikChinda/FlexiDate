@@ -4,7 +4,7 @@ import CalendarGrid from "./CalendarGrid";
 
 
 interface CalendarCardProps {
-    currentDate: Date | undefined;
+    currentDate: Date;
     setcurrentDate: React.Dispatch<React.SetStateAction<Date>>;
 
 }
@@ -23,13 +23,13 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
     const handlePrevMonth = () => {
 
         if (currMonthDigit === 0) {
-            currentYear! -= 1;
+            currentYear -= 1;
             currMonthDigit = 11;
         } else {
-            currMonthDigit!--;
+            currMonthDigit--;
         }
 
-        const newDate = new Date(currentYear!, currMonthDigit!, currentDate?.getDay()! + 1);
+        const newDate = new Date(currentYear, currMonthDigit, currentDate?.getDay() + 1);
         setcurrentDate(newDate);
 
 
@@ -38,27 +38,27 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
     const handleNextMonth = () => {
 
         if (currMonthDigit === 11) {
-            currentYear! += 1;
+            currentYear += 1;
             currMonthDigit = 0;
         } else {
-            currMonthDigit!++;
+            currMonthDigit++;
         }
 
         // needed to be done because otherwise the initial change doesnt happen on changing next month. 
-        const newDate = new Date(currentYear!, currMonthDigit!, currentDate?.getDay()! + 1);
+        const newDate = new Date(currentYear, currMonthDigit, currentDate?.getDay() + 1);
         setcurrentDate(newDate)
 
     }
 
     const handlePrevYear = () => {
         if (currentYear === 0) return;
-        const newDate = new Date(currentYear! - 1, currMonthDigit!, 1);
+        const newDate = new Date(currentYear - 1, currMonthDigit, 1);
         setcurrentDate(newDate);
     }
 
     const handleNextYear = () => {
         if (currentYear === 9999) return;
-        const newDate = new Date(currentYear! + 1, currMonthDigit!, 1);
+        const newDate = new Date(currentYear + 1, currMonthDigit, 1);
         setcurrentDate(newDate);
     }
 
