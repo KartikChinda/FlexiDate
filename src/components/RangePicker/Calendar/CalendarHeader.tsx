@@ -6,6 +6,7 @@ import CalendarGrid from "./CalendarGrid";
 interface CalendarCardProps {
     currentDate: Date | undefined;
     setcurrentDate: React.Dispatch<React.SetStateAction<Date>>;
+
 }
 
 const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
@@ -29,7 +30,7 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
         }
 
         const newDate = new Date(currentYear!, currMonthDigit!, currentDate?.getDay()! + 1);
-        setcurrentDate(newDate)
+        setcurrentDate(newDate);
 
 
     }

@@ -6,6 +6,8 @@ const CalendarCard = () => {
 
     const { initialCal1Date, initialCal2Date, setinitialCal1Date, setinitialCal2Date } = useDateRangeContext();
 
+
+
     useEffect(() => {
         if (initialCal1Date === null) return;
         if (initialCal2Date === null) return;
@@ -21,6 +23,7 @@ const CalendarCard = () => {
         }
 
     }, [initialCal1Date, initialCal2Date])
+
 
 
 
