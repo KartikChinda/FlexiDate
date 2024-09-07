@@ -85,14 +85,14 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                                             onMouseLeave={handleMouseLeave}
                                             key={_idx}
                                             disabled={!isAWeekday(currDay)}
-                                            className={`w-full p-1 rounded-full  ${startingDate === currDay || endingDate === currDay ? 'bg-palette-purpleDark text-black font-black ' : isDateInGivenRange(currDay) ? 'bg-palette-purpleLight text-slate-800' : !isAWeekday(currDay) ? ' bg-slate-800 text-slate-500 cursor-not-allowed' : ''} `}>
+                                            className={`w-full h-8 p-1 rounded-full  ${startingDate === currDay || endingDate === currDay ? 'bg-palette-purpleDark text-black font-black ' : isDateInGivenRange(currDay) ? 'bg-palette-purpleLight text-slate-800' : !isAWeekday(currDay) ? ' bg-slate-800 text-slate-500 cursor-not-allowed' : ''} `}>
                                             {currDay?.getDate()}
                                         </button>
                                     )
 
 
                                 return (
-                                    <div key={_idx} className="w-full flex justify-around p-1 ">
+                                    <div key={_idx} className="w-full  h-8 flex justify-around p-1 ">
 
                                     </div>
                                 )

@@ -28,11 +28,6 @@ export const generateDatesOfTheMonth = (date: Date) => {
 
     let currentWeek = 0;
 
-    // Initialize the calendar matrix with empty weeks
-    for (let i = 0; i < 6; i++) {
-        calendarMatrix[i] = [];
-    }
-
     // filling null till the day the month starts 
     for (let i = 0; i < firstDate.getDay(); i++) {
         calendarMatrix[currentWeek].push(null);
@@ -51,12 +46,13 @@ export const generateDatesOfTheMonth = (date: Date) => {
     while (calendarMatrix[currentWeek].length < 7) {
         calendarMatrix[currentWeek].push(null);
     }
-    console.log(calendarMatrix);
-
-    while (calendarMatrix.length < 6) {
-        calendarMatrix.push(new Array(7).fill(null));
+    console.log(currentWeek)
+    if (currentWeek === 4) {
+        currentWeek = 5;
+        calendarMatrix[currentWeek] = new Array(7).fill(null);
     }
-    console.log(calendarMatrix);
+
+
 
     return calendarMatrix;
 }
