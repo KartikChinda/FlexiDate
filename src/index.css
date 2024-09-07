@@ -27,3 +27,7 @@
 .more-options-container {
   @apply flex mt-4 mb-4 text-xs md:text-base
 }
+
+.weekend-dates {
+  @apply font-bold text-xl md:hover:text-[21px] duration-150 hover:font-extrabold
+}

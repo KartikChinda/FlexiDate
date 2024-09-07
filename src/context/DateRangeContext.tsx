@@ -3,13 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 interface DateRangeContextProps {
     startingDate: Date | null;
     endingDate: Date | null;
-    weekendDates: Date[];
     areDatesSet: boolean;
     initialCal1Date: Date | null;
     initialCal2Date: Date | null;
     setStartingDate: (date: Date | null) => void;
     setEndingDate: (date: Date | null) => void;
-    setWeekendDates: (dates: Date[]) => void;
     setinitialCal1Date: React.Dispatch<React.SetStateAction<Date>>;
     setinitialCal2Date: React.Dispatch<React.SetStateAction<Date>>;
     setareDatesSet: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,7 +23,7 @@ export const DateRangeContext = React.createContext<DateRangeContextProps | unde
 export const DateRangeProvider = ({ children }: { children: React.ReactNode }) => {
     const [startingDate, setStartingDate] = useState<Date | null>(null);
     const [endingDate, setEndingDate] = useState<Date | null>(null);
-    const [weekendDates, setWeekendDates] = useState<Date[]>([]);
+
 
     const [areDatesSet, setareDatesSet] = useState<boolean>(false);
 
@@ -57,7 +55,7 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
     }, [startingDate, endingDate, initialCal1Date])
 
     return (
-        <DateRangeContext.Provider value={{ startingDate, endingDate, weekendDates, setStartingDate, setEndingDate, setWeekendDates, areDatesSet, setareDatesSet, initialCal1Date, initialCal2Date, setinitialCal1Date, setinitialCal2Date, hoverDate, setHoverDate }}>
+        <DateRangeContext.Provider value={{ startingDate, endingDate, setStartingDate, setEndingDate, areDatesSet, setareDatesSet, initialCal1Date, initialCal2Date, setinitialCal1Date, setinitialCal2Date, hoverDate, setHoverDate }}>
             {children}
         </DateRangeContext.Provider>
     )

@@ -1,3 +1,5 @@
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 export const isAWeekday = (inputDate: Date) => {
     const currentDay = inputDate.getDay();
     if (currentDay >= 1 && currentDay <= 5) return true;
@@ -50,7 +52,7 @@ export const generateDatesOfTheMonth = (date: Date) => {
 
 export const getMonthName = (monthNumber: number | undefined): String => {
     if (typeof monthNumber === undefined) return "Invalid Month";
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     if (monthNumber! <= 11) {
         return months[monthNumber!];
     }
@@ -69,4 +71,14 @@ export const properDateFormat = (date: Date): String => {
 
     const finalFormat = `${currYear}-${currMonth}-${currDate}`;
     return finalFormat;
+}
+
+
+
+export const wordDateFormat = (date: Date): String => {
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    return `${month} ${day}, ${year}`;
 }
