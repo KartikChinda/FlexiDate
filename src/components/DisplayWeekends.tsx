@@ -28,7 +28,7 @@ const DisplayWeekends = () => {
         }
         countWeekends(startingDate, endingDate);
 
-    }, [areDatesSet])
+    }, [startingDate, endingDate])
 
 
     return (
@@ -47,14 +47,17 @@ const DisplayWeekends = () => {
                                     {wordDateFormat(endingDate!)}
                                 </span>:
                             </div>
-                            {weekendDates.map((currentWeekend, _idx) => {
-                                return (
-                                    <div key={_idx}>
-                                        {wordDateFormat(currentWeekend!)}
-                                    </div>
-                                )
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+                                {weekendDates.slice(0, 100).map((currentWeekend, _idx) => {
+                                    return (
+                                        <div key={_idx} className="p-4 flex justify-center items-center  rounded-xl border-2 border-black bg-black text-white hover:bg-palette-purpleLight duration-150 hover:text-black hover:text-[18px]">
+                                            {wordDateFormat(currentWeekend!)}
+                                        </div>
+                                    )
+                                    { weekendDates!.length > 0 ? "and many more..." : "" }
+                                })}
+                            </div>
 
-                            })}
                         </div>
                         :
                         "The selected dates have no weekends available in them."

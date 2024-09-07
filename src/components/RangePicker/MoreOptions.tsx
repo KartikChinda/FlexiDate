@@ -15,6 +15,10 @@ const MoreOptions = ({ setisCalendarVisible }: moreOptionProps) => {
         setareDatesSet(false);
     }
 
+    const handleSubmitClick = () => {
+        setisCalendarVisible(false);
+    }
+
     return (
         <div className='w-full flex flex-row   justify-evenly md:justify-between items-center bg-black rounded-xl px-2'>
             <div className="more-options-container ">
@@ -25,7 +29,7 @@ const MoreOptions = ({ setisCalendarVisible }: moreOptionProps) => {
                 <button onClick={handleCancelClick} className='more-options-button  hover:scale-[0.8] '>
                     Cancel
                 </button>
-                <button className='more-options-button  hover:scale-105 font-black'>
+                <button onClick={handleSubmitClick} className='more-options-button  hover:scale-105 font-black'>
                     Submit
                 </button>
             </div>

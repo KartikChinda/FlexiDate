@@ -8,7 +8,7 @@ import { properDateFormat } from "../../utils/dateFunctions";
 
 const RangePicker = () => {
 
-    const { startingDate, endingDate, areDatesSet } = useDateRangeContext();
+    const { startingDate, endingDate, areDatesSet, setareDatesSet } = useDateRangeContext();
     const [isCalendarVisible, setisCalendarVisible] = useState<boolean>(false);
 
     const handleButtonClick = () => {

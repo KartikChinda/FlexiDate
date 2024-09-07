@@ -73,14 +73,17 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                             {currWeek.map((currDay, _idx) => {
                                 // here, we are making sure that null values are not clickable and settable as a date. Limiting this on UI so we dont have to do it using Scripts. 
                                 if (currDay !== null)
+
                                     return (
                                         <button onClick={() => handleDateClick(currDay)}
                                             onMouseEnter={() => handleMouseEnter(currDay)}
                                             onMouseLeave={handleMouseLeave}
-                                            key={_idx} className={`w-full p-1 rounded-full  ${startingDate === currDay || endingDate === currDay ? 'bg-palette-purpleDark text-black font-black ' : isDateInGivenRange(currDay) ? 'bg-palette-purpleLight text-slate-800' : !isAWeekday(currDay) ? ' bg-slate-800 text-slate-500' : ''} `}>
+                                            key={_idx} className={`w-full p-1 rounded-full  ${startingDate === currDay || endingDate === currDay ? 'bg-palette-purpleDark text-black font-black ' : isDateInGivenRange(currDay) ? 'bg-palette-purpleLight text-slate-800' : !isAWeekday(currDay) ? ' bg-slate-800 text-slate-500 cursor-not-allowed ' : ''} `}>
                                             {currDay?.getDate()}
                                         </button>
                                     )
+
+
                                 return (
                                     <div key={_idx} className="w-full flex justify-around p-1 ">
 
