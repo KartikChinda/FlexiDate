@@ -46,7 +46,6 @@ export const generateDatesOfTheMonth = (date: Date) => {
     while (calendarMatrix[currentWeek].length < 7) {
         calendarMatrix[currentWeek].push(null);
     }
-    console.log(currentWeek)
     if (currentWeek === 4) {
         currentWeek = 5;
         calendarMatrix[currentWeek] = new Array(7).fill(null);

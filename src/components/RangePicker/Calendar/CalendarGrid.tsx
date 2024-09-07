@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getDaysOfTheWeek, generateDatesOfTheMonth, isAWeekday } from "../../../utils/dateFunctions";
 import { useDateRangeContext } from "../../../context/DateRangeContext";
 interface CalendarGridProps {
@@ -10,14 +10,48 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
 
     const daysOfTheWeek = getDaysOfTheWeek();
     const [calendarMatrix, setCalendarMatrix] = useState<(Date | null)[][]>([[]]);
-
-
-    useEffect(() => {
-        setCalendarMatrix(generateDatesOfTheMonth(currDate!));
-    }, [currDate])
+    const [datesInRange, setdatesInRange] = useState<Set<Date>>(new Set());
 
     // here starts the import for setting the start and end dates. 
     const { startingDate, setStartingDate, endingDate, setEndingDate, hoverDate, setHoverDate } = useDateRangeContext();
+
+    const generateHighlightedDates = useMemo(() => {
+        const highlightedDates = new Set<Date>();
+
+        if (startingDate === null || endingDate === null) return highlightedDates;
+
+        let start = startingDate;
+        let end = endingDate || hoverDate || startingDate;
+
+        // Ensure start is before end
+        if (start > end) {
+            [start, end] = [end, start];
+        }
+
+        let currDate = new Date(startingDate);
+        while (currDate <= endingDate) {
+            if (currDate.getDay() !== 0 && currDate.getDay() !== 6) {
+                highlightedDates.add(new Date(currDate));
+            }
+            currDate.setDate(currDate.getDate() + 1);
+        }
+        // console.log("The dates are: ", highlightedDates)
+        return highlightedDates;
+    }, [startingDate, endingDate]);
+
+    useEffect(() => {
+        setCalendarMatrix(generateDatesOfTheMonth(currDate!));
+        setdatesInRange(generateHighlightedDates);
+    }, [currDate, datesInRange])
+
+    useEffect(() => {
+
+
+    }, [startingDate, endingDate])
+
+
+
+
 
     const handleDateClick = (date: Date) => {
         if (!startingDate || (startingDate && endingDate)) {
@@ -27,15 +61,18 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
             if (date > startingDate) {
                 setEndingDate(date);
             } else {
+                setEndingDate(startingDate);
                 setStartingDate(date);
             }
         }
+
     }
 
     const handleMouseEnter = (date: Date | null) => {
         if (startingDate && !endingDate) {
             setHoverDate(date);
         }
+
     };
 
     const handleMouseLeave = () => {
@@ -43,17 +80,38 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
     };
 
     const isDateInGivenRange = (date: Date) => {
-        if (!startingDate || !hoverDate) return false;
-        if (!endingDate) {
-            return date > startingDate && date <= hoverDate;
-        }
-        return date > startingDate && date < endingDate;
+        // if (datesInRange.has(date)) return true;
+        // if (!endingDate) {
+        //     if (!startingDate || !hoverDate) return false;
+        //     if (hoverDate <= startingDate)
+        //         return true
+        //     return date > startingDate! && date <= hoverDate!;
+        // }
+
+
+        // const rangeStart = startingDate < hoverDate ? startingDate : hoverDate;
+        // const rangeEnd = startingDate < hoverDate ? hoverDate : startingDate;
+        // return date >= rangeStart && date <= rangeEnd;
+
+        // return date > startingDate! && date < endingDate;
+
+        if (!startingDate) return false;
+
+        const start = startingDate;
+        const end = endingDate || hoverDate;
+
+        if (!end) return false;
+        // Ensure the range is always from the earlier to the later date
+        const rangeStart = end < start ? end : start;
+        const rangeEnd = end > start ? end : start;
+
+        return date >= rangeStart && date <= rangeEnd;
     };
 
 
 
     return (
-        <div className='w-[300px] bg-black rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings'>
+        <div className='w-[300px] bg-black rounded-xl flex flex-col justify-start items-center p-3 text-white font-headings'>
 
 
 
@@ -72,7 +130,7 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                         // w-full flex justify-center items-center gap-4
 
                         <div key={_idx} className="
-                        w-full mt-2 grid grid-cols-7 
+                        w-full mt-2 grid grid-cols-7 gap-1
                         ">
 
                             {currWeek.map((currDay, _idx) => {
@@ -80,19 +138,39 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                                 if (currDay !== null)
 
                                     return (
-                                        <button onClick={() => handleDateClick(currDay)}
+
+                                        <button
+                                            onClick={() => handleDateClick(currDay)}
                                             onMouseEnter={() => handleMouseEnter(currDay)}
                                             onMouseLeave={handleMouseLeave}
                                             key={_idx}
                                             disabled={!isAWeekday(currDay)}
-                                            className={`w-full h-8 p-1 rounded-full  ${startingDate === currDay || endingDate === currDay ? 'bg-palette-purpleDark text-black font-black ' : isDateInGivenRange(currDay) ? 'bg-palette-purpleLight text-slate-800' : !isAWeekday(currDay) ? ' bg-slate-800 text-slate-500 cursor-not-allowed' : ''} `}>
+                                            className={
+                                                `w-full p-1 h-8 rounded-full
+                                               ${(() => {
+
+                                                    if (startingDate === currDay || endingDate === currDay) {
+                                                        return 'bg-palette-purpleDark text-black font-black';
+                                                    } else if (isDateInGivenRange(currDay) && isAWeekday(currDay)) {
+                                                        return 'bg-palette-purpleLight text-slate-800';
+                                                    } else if (!isAWeekday(currDay)) {
+                                                        return 'bg-slate-800 text-slate-500 cursor-not-allowed';
+                                                    } else if (datesInRange?.has(currDay)) {
+                                                        return "bg-palette-purpleLight text-slate-800";
+                                                    } else {
+                                                        return '';
+                                                    }
+                                                })()}`
+                                            }
+                                        >
                                             {currDay?.getDate()}
                                         </button>
                                     )
 
 
+
                                 return (
-                                    <div key={_idx} className="w-full  h-8 flex justify-around p-1 ">
+                                    <div key={_idx} className="w-full h-8 flex justify-around p-1 ">
 
                                     </div>
                                 )

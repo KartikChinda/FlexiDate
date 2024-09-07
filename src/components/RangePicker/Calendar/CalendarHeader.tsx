@@ -12,6 +12,7 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
 
 
     // const [currentDate, setcurrentDate] = useState(currDate);
+
     const currentMonth = getMonthName(currentDate?.getMonth());
 
     let currentYear = currentDate?.getFullYear();
@@ -27,9 +28,9 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
             currMonthDigit!--;
         }
 
-        const newDate = new Date(currentYear!, currMonthDigit!, 1);
+        const newDate = new Date(currentYear!, currMonthDigit!, currentDate?.getDay()! + 1);
         setcurrentDate(newDate)
-        // setcurrDate(newDate);
+
 
     }
 
@@ -42,7 +43,8 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
             currMonthDigit!++;
         }
 
-        const newDate = new Date(currentYear!, currMonthDigit!, 1);
+        // needed to be done because otherwise the initial change doesnt happen on changing next month. 
+        const newDate = new Date(currentYear!, currMonthDigit!, currentDate?.getDay()! + 1);
         setcurrentDate(newDate)
 
     }
@@ -58,6 +60,10 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
         const newDate = new Date(currentYear! + 1, currMonthDigit!, 1);
         setcurrentDate(newDate);
     }
+
+
+
+
     return (
 
         <div className='w-[300px]   rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings  bg-black'>
