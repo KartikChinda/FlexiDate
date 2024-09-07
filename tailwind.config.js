@@ -16,10 +16,39 @@ export default {
           componentBackground: "#000000",
           componentForeground: "#FFDB00",
         },
+        // palette: {
+        //   background: "#F7F7F7",
+        //   purpleLight: "#D6C6F7",
+        //   // purpleDark: "#8365FE",
+        //   purpleDark: "#FFDB00"
+        // }
+        // yellow
+        // palette: {
+        //   background: "#F7F7F7",
+        //   purpleLight: "#FFEBA1",
+        //   // purpleDark: "#8365FE",
+        //   purpleDark: "#FFDB00"
+        // }
+        // orange
+        // palette: {
+        //   background: "#F7F7F7",
+        //   purpleLight: "#FEEAD1",
+        //   // purpleDark: "#8365FE",
+        //   purpleDark: "#F6673F"
+        // }
+        // purple
+        // palette: {
+        //   background: "#F7F7F7",
+        //   purpleLight: "#B3B4ED",
+        //   // purpleDark: "#8365FE",
+        //   purpleDark: "#8365FE"
+        // }
+        // green
         palette: {
           background: "#F7F7F7",
-          purpleLight: "#D6C6F7",
-          purpleDark: "#DDB4FF",
+          purpleLight: "#D0E000",
+          // purpleDark: "#8365FE",
+          purpleDark: "#7CD213"
         }
       },
     },
