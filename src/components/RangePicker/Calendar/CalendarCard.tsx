@@ -19,15 +19,7 @@ const CalendarCard = () => {
             const newTempDate = new Date(initialCal2Date.getFullYear(), initialCal2Date.getMonth() - 1, 1);
             setinitialCal1Date(newTempDate);
         }
-        console.log("D1: ", initialCal1Date)
-        console.log("D2: ", initialCal2Date)
-        // else if (initialCal2Date.getMonth() === initialCal1Date.getMonth() + 1) {
-        // // console.log(initialCal1Date, initialCal2Date)
 
-        // setinitialCal1Date(new Date(initialCal1Date.getFullYear(), initialCal1Date.getMonth() - 1, initialCal1Date.getDate()));
-        // setinitialCal2Date(new Date(initialCal2Date.getFullYear(), initialCal2Date.getMonth() - 1, initialCal2Date.getDate()));
-        // // console.log(initialCal1Date, initialCal2Date)
-        // }
     }, [initialCal1Date, initialCal2Date])
 
 

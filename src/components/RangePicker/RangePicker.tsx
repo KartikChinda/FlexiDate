@@ -20,10 +20,10 @@ const RangePicker = () => {
 
     return (
         <section className="flex justify-center items-center flex-col">
-            <button className="py-4 px-6 rounded-xl bg-palette-purpleLight text-lg font-black " onClick={handleButtonClick}>
+            <button className="py-4 px-6 rounded-xl bg-palette-colLight text-lg font-black " onClick={handleButtonClick}>
                 {areDatesSet ?
                     <div>
-                        You have selected from <span className="date-text">{properDateFormat(startingDate!)}</span> to <span className="date-text">{properDateFormat(endingDate!)}</span>
+                        You have selected dates from <span className="date-text">{properDateFormat(startingDate!)}</span> to <span className="date-text">{properDateFormat(endingDate!)}</span>
                     </div>
 
                     :

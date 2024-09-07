@@ -80,20 +80,6 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
     };
 
     const isDateInGivenRange = (date: Date) => {
-        // if (datesInRange.has(date)) return true;
-        // if (!endingDate) {
-        //     if (!startingDate || !hoverDate) return false;
-        //     if (hoverDate <= startingDate)
-        //         return true
-        //     return date > startingDate! && date <= hoverDate!;
-        // }
-
-
-        // const rangeStart = startingDate < hoverDate ? startingDate : hoverDate;
-        // const rangeEnd = startingDate < hoverDate ? hoverDate : startingDate;
-        // return date >= rangeStart && date <= rangeEnd;
-
-        // return date > startingDate! && date < endingDate;
 
         if (!startingDate) return false;
 
@@ -150,13 +136,13 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                                                ${(() => {
 
                                                     if (startingDate === currDay || endingDate === currDay) {
-                                                        return 'bg-palette-purpleDark text-black font-black';
+                                                        return 'bg-palette-colDark text-black font-black';
                                                     } else if (isDateInGivenRange(currDay) && isAWeekday(currDay)) {
-                                                        return 'bg-palette-purpleLight text-slate-800';
+                                                        return 'bg-palette-colLight text-slate-800';
                                                     } else if (!isAWeekday(currDay)) {
                                                         return 'bg-slate-800 text-slate-500 cursor-not-allowed';
                                                     } else if (datesInRange?.has(currDay)) {
-                                                        return "bg-palette-purpleLight text-slate-800";
+                                                        return "bg-palette-colLight text-slate-800";
                                                     } else {
                                                         return '';
                                                     }

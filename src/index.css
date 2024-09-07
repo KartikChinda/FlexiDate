@@ -21,7 +21,7 @@
 }
 
 .more-options-button {
-  @apply p-2 md:mx-[1px] font-semibold rounded-xl bg-palette-purpleDark border-black hover:text-palette-purpleDark hover:bg-black hover:border-palette-purpleDark border-2 duration-150
+  @apply p-2 md:mx-[1px] font-semibold rounded-xl bg-palette-colDark border-black hover:text-palette-colDark hover:bg-black hover:border-palette-colDark border-2 duration-150
 }
 
 .more-options-container {

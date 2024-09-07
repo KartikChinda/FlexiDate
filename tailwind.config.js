@@ -11,11 +11,12 @@ export default {
         text: "Lora",
       },
       colors: {
-        yellowPalette: {
-          background: "#F7F7F7",
-          componentBackground: "#000000",
-          componentForeground: "#FFDB00",
-        },
+        //just some different palettes I tried out 
+        // yellowPalette: {
+        //   background: "#F7F7F7",
+        //   componentBackground: "#000000",
+        //   componentForeground: "#FFDB00",
+        // },
         // palette: {
         //   background: "#F7F7F7",
         //   purpleLight: "#D6C6F7",
@@ -30,12 +31,12 @@ export default {
         //   purpleDark: "#FFDB00"
         // }
         // orange
-        // palette: {
-        //   background: "#F7F7F7",
-        //   purpleLight: "#FEEAD1",
-        //   // purpleDark: "#8365FE",
-        //   purpleDark: "#F6673F"
-        // }
+        palette: {
+          background: "#F7F7F7",
+          colLight: "#FEEAD1",
+          // purpleDark: "#8365FE",
+          colDark: "#F6673F"
+        }
         // purple
         // palette: {
         //   background: "#F7F7F7",
@@ -44,12 +45,12 @@ export default {
         //   purpleDark: "#8365FE"
         // }
         // green
-        palette: {
-          background: "#F7F7F7",
-          purpleLight: "#D0E000",
-          // purpleDark: "#8365FE",
-          purpleDark: "#7CD213"
-        }
+        // palette: {
+        //   background: "#F7F7F7",
+        //   purpleLight: "#D0E000",
+        //   // purpleDark: "#8365FE",
+        //   purpleDark: "#7CD213"
+        // }
       },
     },
   },
