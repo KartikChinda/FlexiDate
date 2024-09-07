@@ -48,10 +48,6 @@ export const DateRangeProvider = ({ children }: { children: React.ReactNode }) =
             setareDatesSet(true);
         }
 
-
-
-
-
     }, [startingDate, endingDate, initialCal1Date])
 
     return (

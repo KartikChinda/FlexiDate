@@ -58,7 +58,7 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
 
 
             {/* here goes the days of the week */}
-            <div className="w-full mt-4 flex justify-between">
+            <div className="w-full mt-4 flex justify-around">
                 {daysOfTheWeek.map((day) => {
                     return (
                         <p key={day}>{day}</p>
@@ -66,10 +66,15 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                 })}
             </div>
             {/* let's make the main matrix */}
-            <div className="w-full mt-2">
+            <div className="w-full ">
                 {calendarMatrix.map((currWeek, _idx) => {
                     return (
-                        <div key={_idx} className="w-full flex justify-center items-center gap-4 ">
+                        // w-full flex justify-center items-center gap-4
+
+                        <div key={_idx} className="
+                        w-full mt-2 grid grid-cols-7 
+                        ">
+
                             {currWeek.map((currDay, _idx) => {
                                 // here, we are making sure that null values are not clickable and settable as a date. Limiting this on UI so we dont have to do it using Scripts. 
                                 if (currDay !== null)

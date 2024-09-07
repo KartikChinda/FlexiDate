@@ -9,22 +9,20 @@ const DisplayWeekends = () => {
     const [weekendDates, setWeekendDates] = useState<Date[] | null>(null);
 
     useEffect(() => {
+
         const countWeekends = (startingDate: Date | null, endingDate: Date | null) => {
             if (startingDate === null || endingDate === null) return;
             let currentDate = new Date(startingDate);
             const tempWeekendsContainer = [];
 
             while (currentDate <= endingDate) {
-                console.log(currentDate);
                 if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {
                     // do you know what will happen if you push just currentData? 
                     tempWeekendsContainer.push(new Date(currentDate));
-                    console.log("The array is: ", tempWeekendsContainer)
                 }
                 currentDate.setDate(currentDate.getDate() + 1);
             }
             setWeekendDates(tempWeekendsContainer);
-            console.log(tempWeekendsContainer)
         }
         countWeekends(startingDate, endingDate);
 
@@ -54,7 +52,6 @@ const DisplayWeekends = () => {
                                             {wordDateFormat(currentWeekend!)}
                                         </div>
                                     )
-                                    { weekendDates!.length > 0 ? "and many more..." : "" }
                                 })}
                             </div>
 

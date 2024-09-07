@@ -60,7 +60,7 @@ const CalendarHeader = ({ currentDate, setcurrentDate }: CalendarCardProps) => {
     }
     return (
 
-        <div className='w-[300px] h-[320px]  rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings  bg-black'>
+        <div className='w-[300px] h-[360px]  rounded-xl flex flex-col justify-start items-center p-4 text-white font-headings  bg-black'>
             {/* this is the header of the card */}
             <div className="w-full flex justify-between items-center text-xl">
                 <button onClick={handlePrevYear}>&lt;&lt;</button>
