@@ -129,10 +129,10 @@ const CalendarGrid = ({ currDate }: CalendarGridProps) => {
                                                ${(() => {
                                                     // done this way so you can map the ending and starting dates. 
                                                     if (startingDate?.toDateString() === currDay.toDateString() || endingDate?.toDateString() === currDay.toDateString()) {
-                                                        console.log("i am here")
+
                                                         return 'bg-palette-colDark text-black font-black';
                                                     } else if (isDateInGivenRange(currDay) && isAWeekday(currDay)) {
-                                                        console.log("In given range");
+
                                                         return 'bg-palette-colLight text-slate-800';
                                                     } else if (!isAWeekday(currDay)) {
                                                         return 'bg-slate-800 text-slate-500 cursor-not-allowed';
